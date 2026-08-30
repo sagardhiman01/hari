@@ -6,3 +6,7 @@ desktop.ini
 *.log
 .vscode/
 .idea/
+
+# Environment / Host Configuration
+includes/db_config.php
+
