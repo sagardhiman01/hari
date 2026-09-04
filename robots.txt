@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /100/
+Disallow: /100/admin/
+Disallow: /100/includes/
+
+Sitemap: https://hariharratnaemporium.in/100/sitemap.xml

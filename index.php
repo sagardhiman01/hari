@@ -16,6 +16,68 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harihar Ratna Emporium — 100+ Years Heritage | Certified Rudraksha & Gemstones | Haridwar</title>
     <meta name="description" content="Harihar Ratna Emporium - 100+ Years trusted spiritual store, Moti Bazar, Haridwar. 100% certified 1 to 14 Mukhi Nepali Rudraksha, Vedic astrological gemstones, holy Tulsi & Sphatik Malas, Dakshinavarti Shankh & Siddh Yantras.">
+    <!-- Canonical & SEO Domain Path -->
+    <link rel="canonical" href="https://hariharratnaemporium.in/100/">
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hariharratnaemporium.in/100/">
+    <meta property="og:title" content="Harihar Ratna Emporium — 100+ Years Heritage | Haridwar">
+    <meta property="og:description" content="100% Certified 1 to 14 Mukhi Nepali Rudraksha, Lab-Certified Vedic Gemstones & Sacred Malas from Haridwar. 100+ Years Legacy.">
+    <meta property="og:image" content="https://hariharratnaemporium.in/100/uploads/cat_rudraksha.jpg">
+    <meta property="og:site_name" content="Harihar Ratna Emporium">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://hariharratnaemporium.in/100/">
+    <meta name="twitter:title" content="Harihar Ratna Emporium — 100+ Years Heritage | Haridwar">
+    <meta name="twitter:description" content="100% Certified 1 to 14 Mukhi Nepali Rudraksha, Lab-Certified Vedic Gemstones & Sacred Malas from Haridwar.">
+    <meta name="twitter:image" content="https://hariharratnaemporium.in/100/uploads/cat_rudraksha.jpg">
+
+    <!-- Structured Data (JSON-LD) for LocalBusiness & Store -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "JewelryStore",
+      "name": "Harihar Ratna Emporium",
+      "image": "https://hariharratnaemporium.in/100/uploads/cat_rudraksha.jpg",
+      "@id": "https://hariharratnaemporium.in/100/#store",
+      "url": "https://hariharratnaemporium.in/100/",
+      "telephone": "+919927115354",
+      "priceRange": "₹₹",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Moti Bazar, opp. Chat Gali",
+        "addressLocality": "Haridwar",
+        "addressRegion": "Uttarakhand",
+        "postalCode": "249401",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 29.9566,
+        "longitude": 78.1706
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "09:00",
+        "closes": "21:00"
+      },
+      "sameAs": [
+        "https://youtube.com/@hariharjyotishhelp"
+      ]
+    }
+    </script>
+
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="uploads/cat_rudraksha.jpg" type="image/jpeg">
 </head>

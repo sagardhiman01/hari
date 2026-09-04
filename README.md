@@ -70,10 +70,24 @@
    ```
 
 5. **Access the Application**:
-   - **Storefront**: Open [http://localhost:8000](http://localhost:8000) in your browser.
-   - **Admin Panel**: Open [http://localhost:8000/admin](http://localhost:8000/admin)
+   - **Local Storefront**: Open [http://localhost:8000](http://localhost:8000) in your browser.
+   - **Local Admin Panel**: Open [http://localhost:8000/admin](http://localhost:8000/admin)
      - **Default Username**: `admin`
      - **Default Password**: `admin123`
+   - **Production Domain Path**: `https://hariharratnaemporium.in/100/`
+   - **Production Admin Panel**: `https://hariharratnaemporium.in/100/admin/`
+
+---
+
+## 🌐 Production Deployment (Hostinger / cPanel under `/100`)
+
+1. In your web hosting File Manager (e.g. Hostinger hPanel or cPanel):
+   - Navigate to `public_html/`.
+   - Create a directory named `100/`.
+   - Upload all project files into `public_html/100/`.
+2. Open `https://hariharratnaemporium.in/100/setup.php` in your browser.
+3. Enter your Hostinger MySQL database name, user, and password, then click **Initialize & Install Database**.
+4. The storefront is live at `https://hariharratnaemporium.in/100/` and the admin portal at `https://hariharratnaemporium.in/100/admin/`.
 
 ---
 
