@@ -15,7 +15,7 @@ try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
+} catch (Throwable $e) {
     if (php_sapi_name() !== 'cli') {
         $setup_path = (strpos($_SERVER['REQUEST_URI'] ?? '', '/admin') !== false) ? '../setup.php' : 'setup.php';
         ?>
