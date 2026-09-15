@@ -39,11 +39,22 @@
   --text-body-dark: #4a382c;
   --text-muted-light: #7c685b;
 
-  /* Typography */
+  /* Typography Fonts */
   --font-royal: 'Cinzel', serif;
   --font-serif: 'Playfair Display', serif;
   --font-body: 'Outfit', sans-serif;
   --font-hindi: 'Rozha One', serif;
+
+  /* Harmonized Typography Scale System */
+  --text-xs: 0.8rem;    /* 12.8px - Badges, pills, secondary tags */
+  --text-sm: 0.88rem;   /* 14px - Meta tags, specs, subtitles */
+  --text-base: 1rem;    /* 16px - Standard body text, inputs */
+  --text-md: 1.125rem;  /* 18px - Subheadings, card titles */
+  --text-lg: 1.25rem;   /* 20px - Prominent titles */
+  --text-xl: 1.5rem;    /* 24px - Section pre-titles, card headers */
+  --text-2xl: 1.85rem;  /* 30px - Sub-section headers */
+  --text-3xl: 2.4rem;   /* 38px - Section titles */
+  --text-4xl: 3.5rem;   /* 56px - Hero display title */
 
   /* Elevation & Shadows */
   --shadow-sm: 0 2px 8px rgba(10, 6, 4, 0.08);
@@ -110,8 +121,8 @@ img {
   background: var(--bg-dark-900);
   border-bottom: 1px solid rgba(212, 175, 55, 0.3);
   color: var(--text-parchment);
-  font-size: 0.85rem;
-  padding: 0.6rem 0;
+  font-size: var(--text-sm);
+  padding: 0.65rem 0;
   position: relative;
   z-index: 100;
 }
@@ -134,16 +145,17 @@ img {
 .heritage-pill {
   background: var(--gold-gradient);
   color: var(--bg-dark-900);
-  font-size: 0.75rem;
+  font-size: var(--text-xs);
   font-weight: 700;
-  padding: 0.2rem 0.6rem;
+  padding: 0.28rem 0.75rem;
   border-radius: var(--radius-pill);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 }
 
 .reward-challenge {
   color: var(--gold-400);
+  font-size: var(--text-sm);
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -161,6 +173,8 @@ img {
   align-items: center;
   gap: 0.4rem;
   color: var(--text-parchment);
+  font-size: var(--text-sm);
+  font-weight: 500;
   transition: color var(--tr-fast);
 }
 
@@ -196,15 +210,15 @@ img {
 }
 
 .brand-symbol {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   background: var(--gold-gradient);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-royal);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 900;
   color: var(--bg-dark-900);
   box-shadow: var(--shadow-gold);
@@ -213,18 +227,19 @@ img {
 
 .brand-names h1 {
   font-family: var(--font-royal);
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   font-weight: 700;
   color: var(--gold-400);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
   line-height: 1.2;
 }
 
 .brand-names p {
-  font-size: 0.78rem;
-  color: var(--text-muted-dark);
-  letter-spacing: 1px;
+  font-size: var(--text-xs);
+  color: var(--gold-300);
+  letter-spacing: 1.2px;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .main-nav {
@@ -235,8 +250,8 @@ img {
 
 .nav-link {
   font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
   color: var(--text-parchment);
   transition: color var(--tr-fast);
   position: relative;
@@ -274,9 +289,9 @@ img {
   gap: 0.5rem;
   background: var(--whatsapp-gradient);
   color: #fff;
-  font-size: 0.88rem;
-  font-weight: 600;
-  padding: 0.55rem 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.65rem 1.25rem;
   border-radius: var(--radius-pill);
   box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
   transition: all var(--tr-normal);
@@ -331,9 +346,9 @@ img {
   background: rgba(212, 175, 55, 0.15);
   border: 1px solid rgba(212, 175, 55, 0.5);
   color: var(--gold-300);
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
   font-weight: 600;
-  padding: 0.4rem 1rem;
+  padding: 0.45rem 1.15rem;
   border-radius: var(--radius-pill);
   margin-bottom: 1.25rem;
   backdrop-filter: blur(8px);
@@ -341,11 +356,11 @@ img {
 
 .hero-title {
   font-family: var(--font-royal);
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-size: clamp(2.3rem, 5vw, 3.8rem);
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.18;
   color: var(--text-white);
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
 }
 
@@ -359,23 +374,24 @@ img {
 .hero-subtitle {
   font-size: 1.15rem;
   font-weight: 400;
-  color: var(--text-parchment);
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
+  color: #f1e7d8;
+  margin-bottom: 1.75rem;
+  line-height: 1.75;
 }
 
 .hero-features-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.75rem;
-  margin-bottom: 2rem;
+  gap: 0.85rem;
+  margin-bottom: 2.25rem;
 }
 
 .hero-feature-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.92rem;
+  gap: 0.6rem;
+  font-size: 0.98rem;
+  font-weight: 500;
   color: var(--text-parchment);
 }
 
@@ -388,7 +404,7 @@ img {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.1rem;
 }
 
 .btn-primary-gold {
@@ -398,9 +414,9 @@ img {
   background: var(--gold-gradient);
   color: var(--bg-dark-900);
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.02rem;
   font-weight: 700;
-  padding: 0.85rem 1.8rem;
+  padding: 0.95rem 2rem;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-gold);
   border: none;
@@ -421,9 +437,9 @@ img {
   background: rgba(255, 255, 255, 0.06);
   color: var(--text-white);
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.02rem;
   font-weight: 600;
-  padding: 0.85rem 1.8rem;
+  padding: 0.95rem 2rem;
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(8px);
@@ -471,17 +487,19 @@ img {
 
 .stat-number {
   font-family: var(--font-royal);
-  font-size: 2.3rem;
+  font-size: 2.6rem;
   font-weight: 800;
   color: var(--gold-400);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
+  line-height: 1.1;
 }
 
 .stat-label {
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   color: var(--text-muted-dark);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
+  font-weight: 600;
 }
 
 /* ==========================================================================
@@ -495,26 +513,27 @@ img {
 
 .section-pretitle {
   display: inline-block;
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--saffron-500);
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.6rem;
 }
 
 .section-title {
   font-family: var(--font-royal);
-  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-size: clamp(2rem, 3.6vw, 2.7rem);
   font-weight: 700;
   color: var(--text-heading-dark);
   line-height: 1.25;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
 .section-subtitle {
-  font-size: 1rem;
+  font-size: 1.08rem;
   color: var(--text-muted-light);
+  line-height: 1.65;
 }
 
 .section-divider {
@@ -595,26 +614,26 @@ img {
 
 .category-title {
   font-family: var(--font-royal);
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--gold-300);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
 }
 
 .category-desc {
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   color: var(--text-parchment);
-  margin-bottom: 0.75rem;
-  line-height: 1.4;
+  margin-bottom: 0.85rem;
+  line-height: 1.55;
 }
 
 .category-link-text {
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.92rem;
+  font-weight: 700;
   color: var(--gold-400);
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   transition: transform var(--tr-fast);
 }
 
@@ -625,7 +644,7 @@ img {
 }
 
 .category-card:hover .category-link-text {
-  transform: translateX(4px);
+  transform: translateX(5px);
 }
 
 /* ==========================================================================
@@ -654,7 +673,7 @@ img {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.65rem;
 }
 
 .filter-pill {
@@ -662,9 +681,9 @@ img {
   color: var(--text-body-dark);
   border: 1px solid rgba(0, 0, 0, 0.08);
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-weight: 600;
-  padding: 0.5rem 1.1rem;
+  padding: 0.6rem 1.25rem;
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition: all var(--tr-fast);
@@ -684,14 +703,14 @@ img {
 
 .search-input-wrap {
   position: relative;
-  min-width: 260px;
+  min-width: 270px;
 }
 
 .search-input {
   width: 100%;
-  padding: 0.6rem 1rem 0.6rem 2.4rem;
+  padding: 0.65rem 1.1rem 0.65rem 2.6rem;
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   border: 1px solid #d5c8be;
   border-radius: var(--radius-pill);
   background: #fff;
@@ -706,18 +725,18 @@ img {
 
 .search-icon {
   position: absolute;
-  left: 0.85rem;
+  left: 0.95rem;
   top: 50%;
   transform: translateY(-50%);
   color: #9c897d;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   pointer-events: none;
 }
 
 /* Product Cards Grid */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
   gap: 2rem;
 }
 
@@ -763,13 +782,13 @@ img {
   left: 0.85rem;
   background: var(--bg-dark-900);
   color: var(--gold-400);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  padding: 0.25rem 0.65rem;
+  padding: 0.32rem 0.8rem;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(212, 175, 55, 0.4);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
   z-index: 2;
 }
 
@@ -780,13 +799,13 @@ img {
   background: rgba(14, 8, 5, 0.85);
   color: #fff;
   border: 1px solid rgba(212, 175, 55, 0.4);
-  padding: 0.4rem 0.75rem;
+  padding: 0.45rem 0.9rem;
   border-radius: var(--radius-pill);
-  font-size: 0.78rem;
+  font-size: 0.84rem;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
   cursor: pointer;
   backdrop-filter: blur(6px);
   opacity: 0;
@@ -805,80 +824,81 @@ img {
 }
 
 .product-info {
-  padding: 1.35rem;
+  padding: 1.4rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
 .product-category-tag {
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--saffron-500);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   margin-bottom: 0.35rem;
 }
 
 .product-name {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-heading-dark);
-  line-height: 1.35;
-  margin-bottom: 0.5rem;
-  min-height: 2.8rem;
+  line-height: 1.38;
+  margin-bottom: 0.65rem;
+  min-height: 3.3rem;
 }
 
 .product-specs-compact {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 0.85rem;
+  gap: 0.45rem;
+  margin-bottom: 0.95rem;
 }
 
 .spec-chip {
-  font-size: 0.75rem;
-  background: var(--bg-light-200);
-  color: var(--text-body-dark);
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #e0d5c3;
+  font-size: 0.82rem;
+  font-weight: 500;
+  background: #fdf9f1;
+  color: #432e21;
+  padding: 0.32rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid #dfcdb5;
 }
 
 .product-price-box {
   display: flex;
   align-items: baseline;
-  gap: 0.6rem;
-  margin-bottom: 1.1rem;
+  gap: 0.65rem;
+  margin-bottom: 1.15rem;
   margin-top: auto;
 }
 
 .current-price {
   font-family: var(--font-royal);
-  font-size: 1.4rem;
+  font-size: 1.55rem;
   font-weight: 800;
-  color: var(--bg-dark-900);
+  color: #0a0604;
 }
 
 .original-price {
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   color: #9e8e82;
   text-decoration: line-through;
 }
 
 .discount-badge {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: #2e7d32;
   background: #e8f5e9;
-  padding: 0.15rem 0.45rem;
+  padding: 0.22rem 0.55rem;
   border-radius: 4px;
 }
 
 .product-actions {
   display: flex;
-  gap: 0.6rem;
+  gap: 0.65rem;
 }
 
 .btn-buy-wa {
@@ -886,12 +906,12 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
   background: var(--whatsapp-gradient);
   color: #fff;
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 0.7rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.75rem 1.25rem;
   border-radius: var(--radius-md);
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.28);
   transition: all var(--tr-normal);
@@ -982,16 +1002,17 @@ img {
 
 .trust-title {
   font-family: var(--font-royal);
-  font-size: 1.2rem;
+  font-size: 1.28rem;
   font-weight: 700;
   color: var(--gold-300);
   margin-bottom: 0.75rem;
 }
 
 .trust-desc {
-  font-size: 0.88rem;
-  color: var(--text-muted-dark);
-  line-height: 1.6;
+  font-size: 0.94rem;
+  color: var(--text-parchment);
+  opacity: 0.92;
+  line-height: 1.65;
 }
 
 /* ==========================================================================
@@ -1038,13 +1059,13 @@ img {
 .heritage-floating-badge strong {
   display: block;
   font-family: var(--font-royal);
-  font-size: 1.3rem;
+  font-size: 1.45rem;
   color: var(--gold-400);
 }
 
 .heritage-text h2 {
   font-family: var(--font-royal);
-  font-size: 2.2rem;
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
   font-weight: 800;
   color: var(--text-heading-dark);
   line-height: 1.25;
@@ -1052,15 +1073,15 @@ img {
 }
 
 .heritage-text p {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--text-body-dark);
   margin-bottom: 1.2rem;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 .proprietors-card {
   background: #fff;
-  padding: 1.5rem;
+  padding: 1.6rem;
   border-radius: var(--radius-md);
   border-left: 4px solid var(--gold-600);
   box-shadow: var(--shadow-sm);
@@ -1069,15 +1090,17 @@ img {
 
 .proprietors-card h4 {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
+  font-size: 1.18rem;
+  font-weight: 700;
   color: var(--text-heading-dark);
   margin-bottom: 0.35rem;
 }
 
 .proprietors-card p {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--text-muted-light);
   margin-bottom: 0;
+  line-height: 1.6;
 }
 
 /* ==========================================================================
@@ -1097,7 +1120,7 @@ img {
 .testimonial-card {
   background: #ffffff;
   border-radius: var(--radius-lg);
-  padding: 2rem;
+  padding: 2.2rem 2rem;
   border: 1px solid #ebdcc8;
   box-shadow: var(--shadow-sm);
   position: relative;
@@ -1112,16 +1135,16 @@ img {
 
 .stars-rating {
   color: #f59e0b;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   margin-bottom: 0.85rem;
 }
 
 .review-quote {
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   font-style: italic;
   color: var(--text-body-dark);
-  margin-bottom: 1.25rem;
-  line-height: 1.6;
+  margin-bottom: 1.35rem;
+  line-height: 1.7;
 }
 
 .reviewer-meta {
@@ -1131,25 +1154,26 @@ img {
 }
 
 .reviewer-avatar {
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background: var(--gold-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
+  font-size: 1.05rem;
   color: var(--bg-dark-900);
 }
 
 .reviewer-name {
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   color: var(--text-heading-dark);
 }
 
 .reviewer-location {
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   color: var(--text-muted-light);
 }
 
@@ -1175,17 +1199,17 @@ img {
 
 .consultation-box h2 {
   font-family: var(--font-royal);
-  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
   font-weight: 800;
   color: var(--gold-300);
   margin-bottom: 1rem;
 }
 
 .consultation-box p {
-  font-size: 1.05rem;
+  font-size: 1.125rem;
   color: var(--text-parchment);
   margin-bottom: 2rem;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 .consultation-btns {
@@ -1202,7 +1226,7 @@ img {
   background: var(--bg-dark-900);
   color: var(--text-muted-dark);
   padding: 4.5rem 0 1.5rem;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   border-top: 1px solid rgba(212, 175, 55, 0.25);
 }
 
@@ -1215,25 +1239,26 @@ img {
 
 .footer-brand h3 {
   font-family: var(--font-royal);
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   font-weight: 700;
   color: var(--gold-400);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
 .footer-brand p {
   color: var(--text-muted-dark);
   margin-bottom: 1.25rem;
-  line-height: 1.6;
+  line-height: 1.65;
+  font-size: 0.95rem;
 }
 
 .footer-col h4 {
   font-family: var(--font-royal);
-  font-size: 1.05rem;
+  font-size: 1.12rem;
   font-weight: 700;
   color: var(--gold-300);
   margin-bottom: 1.25rem;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 }
 
 .footer-links {
@@ -1241,11 +1266,12 @@ img {
 }
 
 .footer-links li {
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.75rem;
 }
 
 .footer-links a {
   color: var(--text-muted-dark);
+  font-size: 0.94rem;
   transition: color var(--tr-fast);
 }
 
@@ -1256,9 +1282,11 @@ img {
 .footer-contact-info p {
   display: flex;
   align-items: flex-start;
-  gap: 0.6rem;
-  margin-bottom: 0.85rem;
+  gap: 0.65rem;
+  margin-bottom: 0.95rem;
   color: var(--text-parchment);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .footer-bottom {
@@ -1269,7 +1297,7 @@ img {
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
-  font-size: 0.82rem;
+  font-size: 0.88rem;
 }
 
 .footer-bottom a {
@@ -1325,13 +1353,13 @@ img {
   background: var(--bg-dark-900);
   color: #fff;
   border: 1px solid rgba(212, 175, 55, 0.5);
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   cursor: pointer;
   z-index: 10;
   transition: all var(--tr-fast);
@@ -1363,20 +1391,21 @@ img {
 }
 
 .modal-cat-tag {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--saffron-500);
   text-transform: uppercase;
+  letter-spacing: 0.8px;
   margin-bottom: 0.35rem;
 }
 
 .modal-title {
   font-family: var(--font-serif);
-  font-size: 1.45rem;
+  font-size: 1.55rem;
   font-weight: 700;
   color: var(--text-heading-dark);
   line-height: 1.3;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
 .modal-price-wrap {
@@ -1389,7 +1418,7 @@ img {
 .modal-specs-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   margin-bottom: 1.25rem;
 }
 
@@ -1398,7 +1427,7 @@ img {
 }
 
 .modal-specs-table td {
-  padding: 0.5rem 0;
+  padding: 0.55rem 0;
 }
 
 .modal-specs-table td:first-child {
@@ -1412,10 +1441,10 @@ img {
 }
 
 .modal-desc {
-  font-size: 0.9rem;
+  font-size: 0.96rem;
   color: var(--text-body-dark);
   margin-bottom: 1.5rem;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 /* ==========================================================================
@@ -1432,8 +1461,8 @@ img {
 }
 
 .floating-btn {
-  width: 54px;
-  height: 54px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1470,12 +1499,12 @@ img {
 .floating-btn::before {
   content: attr(data-tooltip);
   position: absolute;
-  right: 64px;
+  right: 66px;
   background: var(--bg-dark-900);
   color: var(--gold-400);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  padding: 0.35rem 0.75rem;
+  padding: 0.4rem 0.85rem;
   border-radius: var(--radius-pill);
   border: 1px solid var(--gold-500);
   white-space: nowrap;
@@ -1517,9 +1546,29 @@ img {
     display: block;
   }
   .hero-section {
-    padding: 3rem 0;
+    padding: 3rem 0 3.5rem;
     min-height: auto;
     background-attachment: scroll;
+  }
+  .hero-title {
+    font-size: clamp(2rem, 7vw, 2.6rem);
+    line-height: 1.22;
+  }
+  .hero-subtitle {
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+  .stat-number {
+    font-size: 2.2rem;
+  }
+  .stat-label {
+    font-size: 0.85rem;
+  }
+  .section-title {
+    font-size: 1.85rem;
+  }
+  .section-subtitle {
+    font-size: 0.98rem;
   }
   .stats-grid {
     grid-template-columns: 1fr 1fr;
@@ -1542,17 +1591,47 @@ img {
     justify-content: center;
     text-align: center;
   }
+  .product-name {
+    font-size: 1.15rem;
+    min-height: auto;
+  }
+  .current-price {
+    font-size: 1.45rem;
+  }
 }
 
 @media (max-width: 480px) {
   .hero-title {
-    font-size: 1.9rem;
+    font-size: 1.95rem;
+    line-height: 1.25;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .btn-primary-gold, .btn-secondary-outline {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.98rem;
+    padding: 0.85rem 1.5rem;
   }
   .stats-grid {
     grid-template-columns: 1fr;
   }
   .stat-card::after {
     display: none !important;
+  }
+  .brand-names h1 {
+    font-size: 1.25rem;
+  }
+  .brand-names p {
+    font-size: 0.72rem;
+  }
+  .product-card {
+    border-radius: var(--radius-md);
+  }
+  .current-price {
+    font-size: 1.4rem;
   }
   .footer-grid {
     grid-template-columns: 1fr;
