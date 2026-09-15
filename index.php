@@ -78,7 +78,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     </script>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=<?php echo filemtime(__DIR__ . '/style.css'); ?>">
     <link rel="icon" href="uploads/cat_rudraksha.jpg" type="image/jpeg">
 </head>
 <body>
