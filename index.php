@@ -78,6 +78,11 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     </script>
 
+    <!-- Google Fonts Preconnect for Instant Luxury Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Rozha+One&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css?v=<?php echo filemtime(__DIR__ . '/style.css'); ?>">
     <link rel="icon" href="uploads/cat_rudraksha.jpg" type="image/jpeg">
 </head>
@@ -87,18 +92,18 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="announcement-bar">
     <div class="container announcement-inner">
         <div class="announcement-left">
-            <span class="heritage-pill">100+ Years Heritage</span>
+            <span class="heritage-pill">✦ 100+ Years Heritage</span>
             <span>Moti Bazar, opp Chat Gali, Haridwar (Uttarakhand)</span>
         </div>
         <div class="reward-challenge">
-            <span>100% Purity Guarantee | ₹50,000 Reward if Proven Inauthentic</span>
+            <span>⚜ 100% Purity Guarantee | ₹50,000 Reward if Proven Inauthentic ⚜</span>
         </div>
         <div class="announcement-right">
             <a href="tel:+919927115354" class="announcement-contact-link">
-                <span>+91 9927115354</span>
+                <span>📞 +91 9927115354</span>
             </a>
             <a href="https://youtube.com/@hariharjyotishhelp" target="_blank" class="announcement-contact-link">
-                <span>HARIHAR JYOTISH HELP</span>
+                <span>▶ HARIHAR JYOTISH HELP</span>
             </a>
         </div>
     </div>
@@ -110,8 +115,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <a href="index.php" class="brand-logo-wrapper">
             <div class="brand-symbol">ॐ</div>
             <div class="brand-names">
-                <h1>Harihar Ratna Emporium</h1>
-                <p>Haridwar Heritage • 100+ Years Trust</p>
+                <h1 class="brand-title">Harihar Ratna Emporium</h1>
+                <p class="brand-tagline">ESTD. HARIDWAR • 100+ YEARS OF VEDIC TRUST</p>
             </div>
         </a>
 
@@ -127,6 +132,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="header-actions">
             <a href="https://wa.me/919927115354?text=Namaste%20Pt.%20Ji,%20I%20want%20astrological%20guidance%20for%20Rudraksha%20and%20Gemstones." target="_blank" class="btn-header-wa">
+                <span class="wa-icon">💬</span>
                 <span>WhatsApp Consultation</span>
             </a>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">☰</button>
@@ -139,10 +145,11 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="container">
         <div class="hero-content">
             <div class="hero-badge">
-                <span>100+ Years Legacy — Haridwar's Most Trusted Spiritual Store</span>
+                <span class="badge-star">✦</span>
+                <span>100+ Years Legacy — Haridwar's Most Trusted Spiritual Landmark</span>
             </div>
             <h2 class="hero-title">
-                Authentic, Energized <span>Rudraksha & Gemstones</span> from Haridwar
+                Authentic, Energized <span class="gold-gradient-text">Rudraksha & Gemstones</span> from Holy Haridwar
             </h2>
             <p class="hero-subtitle">
                 100% genuine 1 to 14 Mukhi Nepali Rudraksha, laboratory certified Vedic gemstones, original Dakshinavarti blowing Shankh, and sanctified Japa Malas energized with sacred Ganga Jal & Vedic mantras.
@@ -150,25 +157,29 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <div class="hero-features-list">
                 <div class="hero-feature-item">
+                    <span class="feat-icon">💎</span>
                     <span>100% Certified Natural Stones</span>
                 </div>
                 <div class="hero-feature-item">
+                    <span class="feat-icon">🔱</span>
                     <span>Haridwar Vedic Pran Pratishtha</span>
                 </div>
                 <div class="hero-feature-item">
+                    <span class="feat-icon">📦</span>
                     <span>Cash on Delivery / VPP Pan-India</span>
                 </div>
                 <div class="hero-feature-item">
-                    <span>Pt Akash & Gaurav Bharadwaj</span>
+                    <span class="feat-icon">📜</span>
+                    <span>Pt. Akash & Gaurav Bharadwaj</span>
                 </div>
             </div>
 
             <div class="hero-cta-group">
                 <a href="#products" class="btn-primary-gold">
-                    <span>Explore Sacred Collection</span>
+                    <span>✦ Explore Sacred Collection</span>
                 </a>
-                <a href="https://wa.me/919927115354?text=Namaste,%20I%20need%20free%20gemstone%20recommendation%20as%20per%20my%20Kundali." target="_blank" class="btn-secondary-outline">
-                    <span>Free Kundali Astro Guidance</span>
+                <a href="https://wa.me/919927115354?text=Namaste,%20I%20need%20free%20gemstone%20recommendation%20as%20per%20my%20Kundali." target="_blank" class="btn-secondary-gold">
+                    <span>✨ Free Kundali Astro Guidance</span>
                 </a>
             </div>
         </div>
@@ -319,31 +330,40 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                 <div class="product-card" data-category="<?php echo htmlspecialchars($product['category']); ?>" data-name="<?php echo htmlspecialchars(strtolower($product['name'] . ' ' . $product['ruling_planet'] . ' ' . $product['description'])); ?>">
                     <div class="product-img-box">
-                        <span class="product-badge-ribbon">100% Certified</span>
+                        <span class="product-badge-ribbon">✦ 100% Certified ✦</span>
                         <img src="uploads/<?php echo htmlspecialchars($product['image_url'] ?: 'cat_rudraksha.jpg'); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" loading="lazy">
                         <button class="btn-quick-view" onclick="openQuickView(<?php echo htmlspecialchars(json_encode($product)); ?>)">
-                            <span>Quick View</span>
+                            <span>👁 Quick View</span>
                         </button>
                     </div>
 
                     <div class="product-info">
-                        <span class="product-category-tag"><?php echo htmlspecialchars($product['category']); ?></span>
+                        <div class="product-meta-row">
+                            <span class="product-category-tag"><?php echo htmlspecialchars($product['category']); ?></span>
+                            <span class="product-origin-tag">Haridwar Sanctified</span>
+                        </div>
                         <h3 class="product-name"><?php echo htmlspecialchars($product['name']); ?></h3>
                         
                         <div class="product-specs-compact">
                             <?php if (!empty($product['ruling_planet'])): ?>
-                                <span class="spec-chip"><?php echo htmlspecialchars($product['ruling_planet']); ?></span>
+                                <span class="spec-chip"><span class="chip-symbol">🪐</span> <?php echo htmlspecialchars($product['ruling_planet']); ?></span>
                             <?php endif; ?>
                             <?php if (!empty($product['ruling_deity'])): ?>
-                                <span class="spec-chip"><?php echo htmlspecialchars($product['ruling_deity']); ?></span>
+                                <span class="spec-chip"><span class="chip-symbol">🔱</span> <?php echo htmlspecialchars($product['ruling_deity']); ?></span>
                             <?php endif; ?>
                         </div>
 
+                        <div class="product-guarantee-strip">
+                            <span>✦ Govt. Lab Tested & Ganga Jal Sanctified ✦</span>
+                        </div>
+
                         <div class="product-price-box">
-                            <span class="current-price">₹<?php echo number_format($product['price'], 2); ?></span>
-                            <?php if (!empty($product['original_price'])): ?>
-                                <span class="original-price">₹<?php echo number_format($product['original_price'], 2); ?></span>
-                            <?php endif; ?>
+                            <div class="price-wrap">
+                                <span class="current-price">₹<?php echo number_format($product['price'], 2); ?></span>
+                                <?php if (!empty($product['original_price'])): ?>
+                                    <span class="original-price">₹<?php echo number_format($product['original_price'], 2); ?></span>
+                                <?php endif; ?>
+                            </div>
                             <?php if ($discount): ?>
                                 <span class="discount-badge"><?php echo $discount; ?></span>
                             <?php endif; ?>
@@ -351,7 +371,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         <div class="product-actions">
                             <a href="https://wa.me/919927115354?text=<?php echo urlencode($waMsg); ?>" target="_blank" class="btn-buy-wa">
-                                <span>Buy via WhatsApp</span>
+                                <span class="wa-btn-icon">💬</span>
+                                <span>Order via WhatsApp</span>
                             </a>
                         </div>
                     </div>
@@ -373,21 +394,25 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="trust-grid">
             <div class="trust-card">
+                <div class="trust-icon-badge">🏛️</div>
                 <h3 class="trust-title">100+ Years Heritage</h3>
                 <p class="trust-desc">Operating in Moti Bazar, Haridwar for over a century. Known for authentic gemstones and rare Rudrakshas across India.</p>
             </div>
 
             <div class="trust-card">
+                <div class="trust-icon-badge">🔬</div>
                 <h3 class="trust-title">Lab Certified Purity</h3>
                 <p class="trust-desc">Every gemstone and high-mukhi Rudraksha comes with authorized gemological laboratory test reports & X-ray verification.</p>
             </div>
 
             <div class="trust-card">
+                <div class="trust-icon-badge">🕉️</div>
                 <h3 class="trust-title">Vedic Pran Pratishtha</h3>
                 <p class="trust-desc">Sanctified with holy Ganga Jal, panchamrit, and energized with Vedic Beej Mantras according to your Rashi and Nakshatra.</p>
             </div>
 
             <div class="trust-card">
+                <div class="trust-icon-badge">📦</div>
                 <h3 class="trust-title">Pan-India V.P.P (Postal COD)</h3>
                 <p class="trust-desc">Safe doorstep delivery through Indian Postal V.P.P service anywhere in India. Cash on delivery accepted.</p>
             </div>
