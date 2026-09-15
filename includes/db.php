@@ -12,17 +12,32 @@ if (file_exists($config_file)) {
 }
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password, [
+        PDO::ATTR_TIMEOUT => 2
+    ]);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (Throwable $e) {
-    if (php_sapi_name() !== 'cli') {
-        $setup_path = (strpos($_SERVER['REQUEST_URI'] ?? '', '/admin') !== false) ? '../setup.php' : 'setup.php';
-        ?>
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
+    // Fallback to local SQLite database if available
+    $sqlite_file = __DIR__ . '/harihar.sqlite';
+    if (file_exists($sqlite_file)) {
+        try {
+            $pdo = new PDO("sqlite:" . $sqlite_file);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        } catch (Throwable $sqle) {
+            $pdo = null;
+        }
+    }
+    
+    if (!$pdo) {
+        if (php_sapi_name() !== 'cli') {
+            $setup_path = (strpos($_SERVER['REQUEST_URI'] ?? '', '/admin') !== false) ? '../setup.php' : 'setup.php';
+            ?>
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Database Setup Required - Harihar Ratna Emporium</title>
             <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -143,9 +158,10 @@ try {
         </body>
         </html>
         <?php
-        exit;
-    } else {
-        die("Database connection failed: " . $e->getMessage() . "\n");
+            exit;
+        } else {
+            die("Database connection failed: " . $e->getMessage() . "\n");
+        }
     }
 }
 ?>

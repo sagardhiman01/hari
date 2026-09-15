@@ -353,10 +353,6 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php endif; ?>
                         </div>
 
-                        <div class="product-guarantee-strip">
-                            <span>✦ Govt. Lab Tested & Ganga Jal Sanctified ✦</span>
-                        </div>
-
                         <div class="product-price-box">
                             <div class="price-wrap">
                                 <span class="current-price">₹<?php echo number_format($product['price'], 2); ?></span>
@@ -452,7 +448,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </section>
 
 <!-- Devotee Testimonials Section -->
-<section class="testimonials-section" id="testimonials">
+<section class="testimonials-section" id="reviews">
     <div class="container">
         <div class="section-header">
             <span class="section-pretitle">Devotee Experiences</span>
