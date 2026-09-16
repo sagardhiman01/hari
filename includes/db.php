@@ -164,4 +164,29 @@ try {
         }
     }
 }
+// Auto-create site_settings table if not exists
+if ($pdo) {
+    try {
+        $pdo->exec("CREATE TABLE IF NOT EXISTS site_settings (
+            setting_key   VARCHAR(80)   NOT NULL PRIMARY KEY,
+            setting_value TEXT          NOT NULL DEFAULT '',
+            updated_at    TIMESTAMP     DEFAULT CURRENT_TIMESTAMP
+        )");
+    } catch (Throwable $e) { /* silently ignore */ }
+
+    try {
+        $pdo->exec("CREATE TABLE IF NOT EXISTS users (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(50) NOT NULL UNIQUE,
+            password VARCHAR(255) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )");
+        $checkAdmin = $pdo->query("SELECT COUNT(*) FROM users");
+        if ($checkAdmin && $checkAdmin->fetchColumn() == 0) {
+            $defaultHash = password_hash('admin123', PASSWORD_DEFAULT);
+            $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES ('admin', ?)");
+            $stmt->execute([$defaultHash]);
+        }
+    } catch (Throwable $e) { /* silently ignore if already handled */ }
+}
 ?>

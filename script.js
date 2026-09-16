@@ -164,3 +164,118 @@ function closeQuickView() {
         document.body.style.overflow = 'auto';
     }
 }
+
+// ==========================================================================
+// SCROLL REVEAL — IntersectionObserver driven animations
+// ==========================================================================
+(function () {
+    const animatedEls = document.querySelectorAll('[data-animate]');
+    if (!animatedEls.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const delay = el.getAttribute('data-delay') || '0';
+                el.style.animationDelay = delay + 'ms';
+                el.classList.add('is-visible');
+                observer.unobserve(el);
+            }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    animatedEls.forEach((el) => observer.observe(el));
+})();
+
+// ==========================================================================
+// DEVOTEE REVIEW MODAL & SUBMISSION SYSTEM
+// ==========================================================================
+function openReviewModal() {
+    const modal = document.getElementById('reviewModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        const form = document.getElementById('devoteeReviewForm');
+        const success = document.getElementById('reviewSuccessMsg');
+        if (form) form.style.display = 'block';
+        if (success) success.style.display = 'none';
+    }
+}
+
+function closeReviewModal() {
+    const modal = document.getElementById('reviewModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+function setStarRating(stars) {
+    const input = document.getElementById('reviewRatingVal');
+    if (input) input.value = stars;
+    const starPicks = document.querySelectorAll('#starPicker .star-pick');
+    starPicks.forEach((star) => {
+        const val = parseInt(star.getAttribute('data-val'), 10);
+        if (val <= stars) {
+            star.classList.add('active');
+        } else {
+            star.classList.remove('active');
+        }
+    });
+}
+
+function handleReviewSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('reviewerName').value.trim();
+    const location = document.getElementById('reviewerLocation').value.trim();
+    const product = document.getElementById('reviewerProduct').value.trim();
+    const quote = document.getElementById('reviewerQuote').value.trim();
+    const rating = parseInt(document.getElementById('reviewRatingVal').value, 10) || 5;
+
+    if (!name || !location || !quote) {
+        alert('Please fill out all required fields.');
+        return;
+    }
+
+    const starsStr = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+    const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2) || 'DK';
+
+    // Prepend new review card to testimonials grid
+    const grid = document.querySelector('.testimonials-grid');
+    if (grid) {
+        const newCard = document.createElement('div');
+        newCard.className = 'testimonial-card review-newly-added';
+        newCard.style.animation = 'fadeInUp 0.6s ease forwards';
+        newCard.innerHTML = `
+            <div class="stars-rating">${starsStr}</div>
+            <p class="review-quote">"${quote.replace(/"/g, '&quot;')}"</p>
+            <div class="reviewer-meta">
+                <div class="reviewer-avatar">${initials}</div>
+                <div>
+                    <div class="reviewer-name">${name} ${product ? '<span style="color:var(--gold-400);font-size:0.8rem;font-weight:400;">(' + product + ')</span>' : ''}</div>
+                    <div class="reviewer-location">${location}</div>
+                </div>
+            </div>
+        `;
+        grid.prepend(newCard);
+    }
+
+    // Switch to blessing confirmation
+    const form = document.getElementById('devoteeReviewForm');
+    const success = document.getElementById('reviewSuccessMsg');
+    if (form) form.style.display = 'none';
+    if (success) success.style.display = 'block';
+    if (form) form.reset();
+}
+
+// Close modals when clicking backdrop
+window.addEventListener('click', function (e) {
+    const quickModal = document.getElementById('quickViewModal');
+    const reviewModal = document.getElementById('reviewModal');
+    if (e.target === quickModal) closeQuickView();
+    if (e.target === reviewModal) closeReviewModal();
+});
+

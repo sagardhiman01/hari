@@ -88,32 +88,30 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 
-<!-- Top Announcement & Authenticity Bar -->
-<div class="announcement-bar">
-    <div class="container announcement-inner">
-        <div class="announcement-left">
-            <span class="heritage-pill">✦ 100+ Years Heritage</span>
-            <span>Moti Bazar, opp Chat Gali, Haridwar (Uttarakhand)</span>
-        </div>
-        <div class="reward-challenge">
-            <span>⚜ 100% Purity Guarantee | ₹50,000 Reward if Proven Inauthentic ⚜</span>
-        </div>
-        <div class="announcement-right">
-            <a href="tel:+919927115354" class="announcement-contact-link">
-                <span>📞 +91 9927115354</span>
-            </a>
-            <a href="https://youtube.com/@hariharjyotishhelp" target="_blank" class="announcement-contact-link">
-                <span>▶ HARIHAR JYOTISH HELP</span>
-            </a>
-        </div>
-    </div>
-</div>
-
 <!-- Sticky Main Header -->
 <header class="main-header">
     <div class="container header-inner">
         <a href="index.php" class="brand-logo-wrapper">
+            <?php
+            // Try to load custom logo from settings
+            $siteLogoSrc = null;
+            try {
+                $logoStmt = $pdo->query("SELECT setting_value FROM site_settings WHERE setting_key = 'site_logo' LIMIT 1");
+                if ($logoStmt) {
+                    $logoRow = $logoStmt->fetch(PDO::FETCH_ASSOC);
+                    if ($logoRow && !empty($logoRow['setting_value'])) {
+                        $siteLogoSrc = $logoRow['setting_value'];
+                    }
+                }
+            } catch (Exception $e) { }
+            ?>
+            <?php if ($siteLogoSrc): ?>
+            <div class="brand-logo-img-wrap">
+                <img src="<?php echo htmlspecialchars($siteLogoSrc); ?>" alt="Harihar Ratna Emporium Logo" class="brand-logo-img">
+            </div>
+            <?php else: ?>
             <div class="brand-symbol">ॐ</div>
+            <?php endif; ?>
             <div class="brand-names">
                 <h1 class="brand-title">Harihar Ratna Emporium</h1>
                 <p class="brand-tagline">ESTD. HARIDWAR • 100+ YEARS OF VEDIC TRUST</p>
@@ -126,13 +124,13 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <a href="#products" class="nav-link">Catalog</a>
             <a href="#heritage" class="nav-link">Our Heritage</a>
             <a href="#assurance" class="nav-link">Purity Guarantee</a>
-            <a href="#testimonials" class="nav-link">Reviews</a>
+            <a href="#reviews" class="nav-link">Reviews</a>
             <a href="#contact" class="nav-link">Contact</a>
         </nav>
 
         <div class="header-actions">
-            <a href="https://wa.me/919927115354?text=Namaste%20Pt.%20Ji,%20I%20want%20astrological%20guidance%20for%20Rudraksha%20and%20Gemstones." target="_blank" class="btn-header-wa">
-                <span class="wa-icon">💬</span>
+            <a href="https://wa.me/919927115354?text=Namaste%20Pt.%20Ji,%20I%20want%20astrological%20guidance%20for%20Rudraksha%20and%20Gemstones." target="_blank" class="btn-header-wa" aria-label="WhatsApp Consultation">
+                <svg class="wa-svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                 <span>WhatsApp Consultation</span>
             </a>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">☰</button>
@@ -155,21 +153,17 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 100% genuine 1 to 14 Mukhi Nepali Rudraksha, laboratory certified Vedic gemstones, original Dakshinavarti blowing Shankh, and sanctified Japa Malas energized with sacred Ganga Jal & Vedic mantras.
             </p>
 
-            <div class="hero-features-list">
+            <div class="hero-features-list" data-animate="fade-up">
                 <div class="hero-feature-item">
-                    <span class="feat-icon">💎</span>
                     <span>100% Certified Natural Stones</span>
                 </div>
                 <div class="hero-feature-item">
-                    <span class="feat-icon">🔱</span>
                     <span>Haridwar Vedic Pran Pratishtha</span>
                 </div>
                 <div class="hero-feature-item">
-                    <span class="feat-icon">📦</span>
                     <span>Cash on Delivery / VPP Pan-India</span>
                 </div>
                 <div class="hero-feature-item">
-                    <span class="feat-icon">📜</span>
                     <span>Pt. Akash & Gaurav Bharadwaj</span>
                 </div>
             </div>
@@ -178,8 +172,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <a href="#products" class="btn-primary-gold">
                     <span>✦ Explore Sacred Collection</span>
                 </a>
-                <a href="https://wa.me/919927115354?text=Namaste,%20I%20need%20free%20gemstone%20recommendation%20as%20per%20my%20Kundali." target="_blank" class="btn-secondary-gold">
-                    <span>✨ Free Kundali Astro Guidance</span>
+                <a href="https://wa.me/919927115354?text=Namaste,%20I%20need%20free%20gemstone%20recommendation%20as%20per%20my%20Kundali." target="_blank" class="btn-secondary-gold btn-wa-glow">
+                    <svg class="wa-svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    <span>Free Kundali Astro Guidance</span>
                 </a>
             </div>
         </div>
@@ -333,7 +328,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <span class="product-badge-ribbon">✦ 100% Certified ✦</span>
                         <img src="uploads/<?php echo htmlspecialchars($product['image_url'] ?: 'cat_rudraksha.jpg'); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" loading="lazy">
                         <button class="btn-quick-view" onclick="openQuickView(<?php echo htmlspecialchars(json_encode($product)); ?>)">
-                            <span>👁 Quick View</span>
+                            <span>Quick View</span>
                         </button>
                     </div>
 
@@ -346,10 +341,10 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         
                         <div class="product-specs-compact">
                             <?php if (!empty($product['ruling_planet'])): ?>
-                                <span class="spec-chip"><span class="chip-symbol">🪐</span> <?php echo htmlspecialchars($product['ruling_planet']); ?></span>
+                                <span class="spec-chip">Planet: <?php echo htmlspecialchars($product['ruling_planet']); ?></span>
                             <?php endif; ?>
                             <?php if (!empty($product['ruling_deity'])): ?>
-                                <span class="spec-chip"><span class="chip-symbol">🔱</span> <?php echo htmlspecialchars($product['ruling_deity']); ?></span>
+                                <span class="spec-chip">Deity: <?php echo htmlspecialchars($product['ruling_deity']); ?></span>
                             <?php endif; ?>
                         </div>
 
@@ -367,7 +362,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         <div class="product-actions">
                             <a href="https://wa.me/919927115354?text=<?php echo urlencode($waMsg); ?>" target="_blank" class="btn-buy-wa">
-                                <span class="wa-btn-icon">💬</span>
+                                <svg class="wa-svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                                 <span>Order via WhatsApp</span>
                             </a>
                         </div>
@@ -389,26 +384,26 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
         <div class="trust-grid">
-            <div class="trust-card">
-                <div class="trust-icon-badge">🏛️</div>
+            <div class="trust-card" data-animate="fade-up" data-delay="0">
+                <div class="trust-icon-badge trust-icon-heritage"><span>100+</span></div>
                 <h3 class="trust-title">100+ Years Heritage</h3>
                 <p class="trust-desc">Operating in Moti Bazar, Haridwar for over a century. Known for authentic gemstones and rare Rudrakshas across India.</p>
             </div>
 
-            <div class="trust-card">
-                <div class="trust-icon-badge">🔬</div>
+            <div class="trust-card" data-animate="fade-up" data-delay="100">
+                <div class="trust-icon-badge trust-icon-lab"><span>Lab</span></div>
                 <h3 class="trust-title">Lab Certified Purity</h3>
                 <p class="trust-desc">Every gemstone and high-mukhi Rudraksha comes with authorized gemological laboratory test reports & X-ray verification.</p>
             </div>
 
-            <div class="trust-card">
-                <div class="trust-icon-badge">🕉️</div>
+            <div class="trust-card" data-animate="fade-up" data-delay="200">
+                <div class="trust-icon-badge trust-icon-vedic"><span>ॐ</span></div>
                 <h3 class="trust-title">Vedic Pran Pratishtha</h3>
                 <p class="trust-desc">Sanctified with holy Ganga Jal, panchamrit, and energized with Vedic Beej Mantras according to your Rashi and Nakshatra.</p>
             </div>
 
-            <div class="trust-card">
-                <div class="trust-icon-badge">📦</div>
+            <div class="trust-card" data-animate="fade-up" data-delay="300">
+                <div class="trust-icon-badge trust-icon-cod"><span>VPP</span></div>
                 <h3 class="trust-title">Pan-India V.P.P (Postal COD)</h3>
                 <p class="trust-desc">Safe doorstep delivery through Indian Postal V.P.P service anywhere in India. Cash on delivery accepted.</p>
             </div>
@@ -448,6 +443,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </section>
 
 <!-- Devotee Testimonials Section -->
+<div id="testimonials" style="position: relative; top: -70px;"></div>
 <section class="testimonials-section" id="reviews">
     <div class="container">
         <div class="section-header">
@@ -455,6 +451,11 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <h2 class="section-title">What Our Customers Say</h2>
             <p class="section-subtitle">Thousands of devotees and patrons across India have experienced life-transforming blessings.</p>
             <div class="section-divider"><span class="divider-symbol">✦ ॐ ✦</span></div>
+            <div style="margin-top: 1.25rem;">
+                <button type="button" class="btn-primary-gold btn-write-review" onclick="openReviewModal()" id="btnWriteReview">
+                    <span>✍ Write a Devotee Review</span>
+                </button>
+            </div>
         </div>
 
         <div class="testimonials-grid">
@@ -506,7 +507,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 Not sure which Mukhi Rudraksha or Rashi Ratna suits your birth chart? Speak directly with Pt. Akash Bharadwaj & Gaurav Bharadwaj for free Kundali analysis and customized recommendation.
             </p>
             <div class="consultation-btns">
-                <a href="https://wa.me/919927115354?text=Namaste%20Pandit%20Ji,%20I%20want%20astrological%20consultation%20for%20my%20Kundali%20and%20Gemstone%20recommendation." target="_blank" class="btn-primary-gold">
+                <a href="https://wa.me/919927115354?text=Namaste%20Pandit%20Ji,%20I%20want%20astrological%20consultation%20for%20my%20Kundali%20and%20Gemstone%20recommendation." target="_blank" class="btn-primary-gold btn-wa-glow">
+                    <svg class="wa-svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                     <span>WhatsApp Pt. Akash Bharadwaj</span>
                 </a>
                 <a href="tel:+919927115354" class="btn-secondary-outline">
@@ -522,9 +524,30 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Rich Vedic Footer -->
 <footer class="main-footer">
+    <!-- Purity Guarantee Strip -->
+    <div class="footer-purity-bar">
+        <div class="container">
+            <div class="footer-purity-inner">
+                <span class="footer-purity-item">✦ 100+ Years Heritage</span>
+                <span class="footer-purity-sep">|</span>
+                <span class="footer-purity-item">Moti Bazar, opp Chat Gali, Haridwar (Uttarakhand)</span>
+                <span class="footer-purity-sep">|</span>
+                <span class="footer-purity-item">⚜ 100% Purity Guarantee | ₹50,000 Reward if Proven Inauthentic ⚜</span>
+                <span class="footer-purity-sep">|</span>
+                <a href="tel:+919927115354" class="footer-purity-item footer-purity-link">📞 +91 9927115354</a>
+                <span class="footer-purity-sep">|</span>
+                <a href="https://youtube.com/@hariharjyotishhelp" target="_blank" class="footer-purity-item footer-purity-link">▶ HARIHAR JYOTISH HELP</a>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="footer-grid">
             <div class="footer-brand">
+                <?php if ($siteLogoSrc): ?>
+                <img src="<?php echo htmlspecialchars($siteLogoSrc); ?>" alt="Harihar Ratna Emporium" class="footer-logo-img">
+                <?php else: ?>
+                <div class="footer-brand-symbol">ॐ</div>
+                <?php endif; ?>
                 <h3>Harihar Ratna Emporium</h3>
                 <p>
                     Haridwar's premier 100+ years old institution for certified Vedic gemstones, authentic 1 to 14 Mukhi Nepali Rudraksha, sacred Japa Malas, Siddh Yantras, and acoustic Dakshinavarti Shankh with 100% purity guarantee.
@@ -619,8 +642,59 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p class="modal-desc" id="modalDesc"></p>
 
             <a href="#" id="modalWaBtn" target="_blank" class="btn-buy-wa" style="margin-top: auto;">
+                <svg class="wa-svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                 <span>Buy via WhatsApp</span>
             </a>
+        </div>
+    </div>
+</div>
+
+<!-- Devotee Review Modal -->
+<div class="modal-backdrop" id="reviewModal">
+    <div class="modal-card review-modal-card">
+        <button class="modal-close-btn" onclick="closeReviewModal()">✕</button>
+        <div class="review-modal-header">
+            <span class="review-om-badge">ॐ</span>
+            <h3 class="review-modal-title">Share Your Devotee Experience</h3>
+            <p class="review-modal-sub">Your genuine feedback helps fellow seekers choose authenticated, energized Vedic treasures.</p>
+        </div>
+        <form id="devoteeReviewForm" onsubmit="handleReviewSubmit(event)">
+            <div class="review-rating-select">
+                <label>Your Divine Rating:</label>
+                <div class="star-rating-picker" id="starPicker">
+                    <span class="star-pick active" data-val="1" onclick="setStarRating(1)">★</span>
+                    <span class="star-pick active" data-val="2" onclick="setStarRating(2)">★</span>
+                    <span class="star-pick active" data-val="3" onclick="setStarRating(3)">★</span>
+                    <span class="star-pick active" data-val="4" onclick="setStarRating(4)">★</span>
+                    <span class="star-pick active" data-val="5" onclick="setStarRating(5)">★</span>
+                </div>
+                <input type="hidden" id="reviewRatingVal" value="5">
+            </div>
+            <div class="review-form-field">
+                <label>Your Name *</label>
+                <input type="text" id="reviewerName" class="review-input" placeholder="e.g. Ramesh Chandra Sharma" required>
+            </div>
+            <div class="review-form-field">
+                <label>City & State *</label>
+                <input type="text" id="reviewerLocation" class="review-input" placeholder="e.g. Jaipur, Rajasthan" required>
+            </div>
+            <div class="review-form-field">
+                <label>Item Purchased / Purpose</label>
+                <input type="text" id="reviewerProduct" class="review-input" placeholder="e.g. 7 Mukhi Nepali Rudraksha / Ceylon Pukhraj">
+            </div>
+            <div class="review-form-field">
+                <label>Your Experience / Review *</label>
+                <textarea id="reviewerQuote" class="review-textarea" rows="4" placeholder="How did the Rudraksha or Gemstone benefit you? Experience with Pandit Ji's guidance..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary-gold" style="width: 100%; justify-content: center; margin-top: 1rem;">
+                <span>✦ Submit Devotee Review</span>
+            </button>
+        </form>
+        <div id="reviewSuccessMsg" style="display: none; text-align: center; padding: 2rem 1rem;">
+            <div style="font-size: 2.8rem; color: #ffd700; margin-bottom: 0.5rem; line-height: 1;">ॐ</div>
+            <h4 style="font-family: 'Cinzel', serif; color: #ffd700; font-size: 1.35rem; margin-bottom: 0.6rem;">Har Har Mahadev! Dhanyavaad</h4>
+            <p style="color: #e6dfd5; font-size: 0.95rem; line-height: 1.6;">Your heartfelt review has been recorded with deep reverence and added to Devotee Experiences. May Lord Shiva and mother Ganga bestow immense health and prosperity upon your family!</p>
+            <button class="btn-secondary-gold" onclick="closeReviewModal()" style="margin-top: 1.5rem;">Continue Browsing</button>
         </div>
     </div>
 </div>
@@ -628,10 +702,10 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <!-- Floating Action Call & WhatsApp Buttons -->
 <div class="floating-actions">
     <a href="https://wa.me/919927115354?text=Namaste%20Pt.%20Ji,%20I%20need%20assistance%20with%20Harihar%20Ratna%20products." target="_blank" class="floating-btn floating-btn-wa" data-tooltip="Chat on WhatsApp" aria-label="WhatsApp Us">
-        WA
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </a>
     <a href="tel:+919927115354" class="floating-btn floating-btn-call" data-tooltip="Call Pt. Akash Bharadwaj" aria-label="Call Store">
-        Call
+        <svg viewBox="0 0 24 24" fill="white" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
     </a>
 </div>
 

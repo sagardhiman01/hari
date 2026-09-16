@@ -130,6 +130,7 @@ if (isset($_GET['edit'])) {
         <nav class="admin-links">
             <a href="dashboard.php" class="admin-link">Dashboard</a>
             <a href="manage_products.php" class="admin-link active">Manage Products</a>
+            <a href="settings.php" class="admin-link">Logo & Settings</a>
             <a href="../" target="_blank" class="admin-link">View Live Website</a>
             <a href="dashboard.php?logout=1" class="admin-link logout">Logout</a>
         </nav>

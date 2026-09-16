@@ -42,6 +42,7 @@ $recentProducts = $stmtRecent->fetchAll();
         <nav class="admin-links">
             <a href="dashboard.php" class="admin-link active">Dashboard</a>
             <a href="manage_products.php" class="admin-link">Manage Products</a>
+            <a href="settings.php" class="admin-link">Logo & Settings</a>
             <a href="../" target="_blank" class="admin-link">View Live Website</a>
             <a href="dashboard.php?logout=1" class="admin-link logout">Logout</a>
         </nav>
@@ -74,6 +75,9 @@ $recentProducts = $stmtRecent->fetchAll();
             </a>
             <a href="manage_products.php" class="btn-admin btn-admin-edit">
                 <span>View Full Catalog</span>
+            </a>
+            <a href="settings.php" class="btn-admin btn-admin-edit" style="border-color: #d4af37; color: #ffd700;">
+                <span>⚙ Upload Logo & Settings</span>
             </a>
         </div>
     </div>
